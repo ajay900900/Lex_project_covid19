@@ -1,0 +1,535 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AMP
+    CAP
+    CLOSEDIV
+    CLOSEHEADER
+    CLOSEHFOUR
+    CLOSEHREF
+    CLOSESMALL
+    CLOSESPAN
+    CLOSESTYLE
+    CLOSETABLE
+    ENTITY
+    FALTU
+    GARBAGE
+    IMG
+    OPENDIV
+    OPENHEADER
+    OPENHFOUR
+    OPENHREF
+    OPENSMALL
+    OPENSPAN
+    OPENSTYLE
+    OPENTABLE
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> BEGIN skipall OPENTBODY content_rec handle_row CLOSETBODY
+Rule 2     handle_row -> OPENROW content_rec OPENDATA content_rec CLOSEDATA content_rec recurse_td CLOSEROW content_rec handle_row
+Rule 3     handle_row -> empty
+Rule 4     recurse_td -> OPENDATA content_rec CLOSEDATA content_rec recurse_td
+Rule 5     recurse_td -> empty
+Rule 6     skipall -> CONTENT skipall
+Rule 7     skipall -> OPENDATA skipall
+Rule 8     skipall -> CLOSEDATA skipall
+Rule 9     skipall -> OPENROW skipall
+Rule 10    skipall -> CLOSEROW skipall
+Rule 11    skipall -> empty
+Rule 12    content_rec -> CONTENT content_rec
+Rule 13    content_rec -> empty
+Rule 14    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AMP                  : 
+BEGIN                : 1
+CAP                  : 
+CLOSEDATA            : 2 4 8
+CLOSEDIV             : 
+CLOSEHEADER          : 
+CLOSEHFOUR           : 
+CLOSEHREF            : 
+CLOSEROW             : 2 10
+CLOSESMALL           : 
+CLOSESPAN            : 
+CLOSESTYLE           : 
+CLOSETABLE           : 
+CLOSETBODY           : 1
+CONTENT              : 6 12
+ENTITY               : 
+FALTU                : 
+GARBAGE              : 
+IMG                  : 
+OPENDATA             : 2 4 7
+OPENDIV              : 
+OPENHEADER           : 
+OPENHFOUR            : 
+OPENHREF             : 
+OPENROW              : 2 9
+OPENSMALL            : 
+OPENSPAN             : 
+OPENSTYLE            : 
+OPENTABLE            : 
+OPENTBODY            : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+content_rec          : 1 2 2 2 2 4 4 12
+empty                : 3 5 11 13
+handle_row           : 1 2
+recurse_td           : 2 4
+skipall              : 1 6 7 8 9 10
+start                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . BEGIN skipall OPENTBODY content_rec handle_row CLOSETBODY
+
+    BEGIN           shift and go to state 2
+
+    start                          shift and go to state 1
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> BEGIN . skipall OPENTBODY content_rec handle_row CLOSETBODY
+    (6) skipall -> . CONTENT skipall
+    (7) skipall -> . OPENDATA skipall
+    (8) skipall -> . CLOSEDATA skipall
+    (9) skipall -> . OPENROW skipall
+    (10) skipall -> . CLOSEROW skipall
+    (11) skipall -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 4
+    OPENDATA        shift and go to state 5
+    CLOSEDATA       shift and go to state 6
+    OPENROW         shift and go to state 7
+    CLOSEROW        shift and go to state 8
+    OPENTBODY       reduce using rule 14 (empty -> .)
+
+    skipall                        shift and go to state 3
+    empty                          shift and go to state 9
+
+state 3
+
+    (1) start -> BEGIN skipall . OPENTBODY content_rec handle_row CLOSETBODY
+
+    OPENTBODY       shift and go to state 10
+
+
+state 4
+
+    (6) skipall -> CONTENT . skipall
+    (6) skipall -> . CONTENT skipall
+    (7) skipall -> . OPENDATA skipall
+    (8) skipall -> . CLOSEDATA skipall
+    (9) skipall -> . OPENROW skipall
+    (10) skipall -> . CLOSEROW skipall
+    (11) skipall -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 4
+    OPENDATA        shift and go to state 5
+    CLOSEDATA       shift and go to state 6
+    OPENROW         shift and go to state 7
+    CLOSEROW        shift and go to state 8
+    OPENTBODY       reduce using rule 14 (empty -> .)
+
+    skipall                        shift and go to state 11
+    empty                          shift and go to state 9
+
+state 5
+
+    (7) skipall -> OPENDATA . skipall
+    (6) skipall -> . CONTENT skipall
+    (7) skipall -> . OPENDATA skipall
+    (8) skipall -> . CLOSEDATA skipall
+    (9) skipall -> . OPENROW skipall
+    (10) skipall -> . CLOSEROW skipall
+    (11) skipall -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 4
+    OPENDATA        shift and go to state 5
+    CLOSEDATA       shift and go to state 6
+    OPENROW         shift and go to state 7
+    CLOSEROW        shift and go to state 8
+    OPENTBODY       reduce using rule 14 (empty -> .)
+
+    skipall                        shift and go to state 12
+    empty                          shift and go to state 9
+
+state 6
+
+    (8) skipall -> CLOSEDATA . skipall
+    (6) skipall -> . CONTENT skipall
+    (7) skipall -> . OPENDATA skipall
+    (8) skipall -> . CLOSEDATA skipall
+    (9) skipall -> . OPENROW skipall
+    (10) skipall -> . CLOSEROW skipall
+    (11) skipall -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 4
+    OPENDATA        shift and go to state 5
+    CLOSEDATA       shift and go to state 6
+    OPENROW         shift and go to state 7
+    CLOSEROW        shift and go to state 8
+    OPENTBODY       reduce using rule 14 (empty -> .)
+
+    skipall                        shift and go to state 13
+    empty                          shift and go to state 9
+
+state 7
+
+    (9) skipall -> OPENROW . skipall
+    (6) skipall -> . CONTENT skipall
+    (7) skipall -> . OPENDATA skipall
+    (8) skipall -> . CLOSEDATA skipall
+    (9) skipall -> . OPENROW skipall
+    (10) skipall -> . CLOSEROW skipall
+    (11) skipall -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 4
+    OPENDATA        shift and go to state 5
+    CLOSEDATA       shift and go to state 6
+    OPENROW         shift and go to state 7
+    CLOSEROW        shift and go to state 8
+    OPENTBODY       reduce using rule 14 (empty -> .)
+
+    skipall                        shift and go to state 14
+    empty                          shift and go to state 9
+
+state 8
+
+    (10) skipall -> CLOSEROW . skipall
+    (6) skipall -> . CONTENT skipall
+    (7) skipall -> . OPENDATA skipall
+    (8) skipall -> . CLOSEDATA skipall
+    (9) skipall -> . OPENROW skipall
+    (10) skipall -> . CLOSEROW skipall
+    (11) skipall -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 4
+    OPENDATA        shift and go to state 5
+    CLOSEDATA       shift and go to state 6
+    OPENROW         shift and go to state 7
+    CLOSEROW        shift and go to state 8
+    OPENTBODY       reduce using rule 14 (empty -> .)
+
+    skipall                        shift and go to state 15
+    empty                          shift and go to state 9
+
+state 9
+
+    (11) skipall -> empty .
+
+    OPENTBODY       reduce using rule 11 (skipall -> empty .)
+
+
+state 10
+
+    (1) start -> BEGIN skipall OPENTBODY . content_rec handle_row CLOSETBODY
+    (12) content_rec -> . CONTENT content_rec
+    (13) content_rec -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 17
+    OPENROW         reduce using rule 14 (empty -> .)
+    CLOSETBODY      reduce using rule 14 (empty -> .)
+
+    content_rec                    shift and go to state 16
+    empty                          shift and go to state 18
+
+state 11
+
+    (6) skipall -> CONTENT skipall .
+
+    OPENTBODY       reduce using rule 6 (skipall -> CONTENT skipall .)
+
+
+state 12
+
+    (7) skipall -> OPENDATA skipall .
+
+    OPENTBODY       reduce using rule 7 (skipall -> OPENDATA skipall .)
+
+
+state 13
+
+    (8) skipall -> CLOSEDATA skipall .
+
+    OPENTBODY       reduce using rule 8 (skipall -> CLOSEDATA skipall .)
+
+
+state 14
+
+    (9) skipall -> OPENROW skipall .
+
+    OPENTBODY       reduce using rule 9 (skipall -> OPENROW skipall .)
+
+
+state 15
+
+    (10) skipall -> CLOSEROW skipall .
+
+    OPENTBODY       reduce using rule 10 (skipall -> CLOSEROW skipall .)
+
+
+state 16
+
+    (1) start -> BEGIN skipall OPENTBODY content_rec . handle_row CLOSETBODY
+    (2) handle_row -> . OPENROW content_rec OPENDATA content_rec CLOSEDATA content_rec recurse_td CLOSEROW content_rec handle_row
+    (3) handle_row -> . empty
+    (14) empty -> .
+
+    OPENROW         shift and go to state 20
+    CLOSETBODY      reduce using rule 14 (empty -> .)
+
+    handle_row                     shift and go to state 19
+    empty                          shift and go to state 21
+
+state 17
+
+    (12) content_rec -> CONTENT . content_rec
+    (12) content_rec -> . CONTENT content_rec
+    (13) content_rec -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 17
+    OPENROW         reduce using rule 14 (empty -> .)
+    CLOSETBODY      reduce using rule 14 (empty -> .)
+    OPENDATA        reduce using rule 14 (empty -> .)
+    CLOSEDATA       reduce using rule 14 (empty -> .)
+    CLOSEROW        reduce using rule 14 (empty -> .)
+
+    content_rec                    shift and go to state 22
+    empty                          shift and go to state 18
+
+state 18
+
+    (13) content_rec -> empty .
+
+    OPENROW         reduce using rule 13 (content_rec -> empty .)
+    CLOSETBODY      reduce using rule 13 (content_rec -> empty .)
+    OPENDATA        reduce using rule 13 (content_rec -> empty .)
+    CLOSEDATA       reduce using rule 13 (content_rec -> empty .)
+    CLOSEROW        reduce using rule 13 (content_rec -> empty .)
+
+
+state 19
+
+    (1) start -> BEGIN skipall OPENTBODY content_rec handle_row . CLOSETBODY
+
+    CLOSETBODY      shift and go to state 23
+
+
+state 20
+
+    (2) handle_row -> OPENROW . content_rec OPENDATA content_rec CLOSEDATA content_rec recurse_td CLOSEROW content_rec handle_row
+    (12) content_rec -> . CONTENT content_rec
+    (13) content_rec -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 17
+    OPENDATA        reduce using rule 14 (empty -> .)
+
+    content_rec                    shift and go to state 24
+    empty                          shift and go to state 18
+
+state 21
+
+    (3) handle_row -> empty .
+
+    CLOSETBODY      reduce using rule 3 (handle_row -> empty .)
+
+
+state 22
+
+    (12) content_rec -> CONTENT content_rec .
+
+    OPENROW         reduce using rule 12 (content_rec -> CONTENT content_rec .)
+    CLOSETBODY      reduce using rule 12 (content_rec -> CONTENT content_rec .)
+    OPENDATA        reduce using rule 12 (content_rec -> CONTENT content_rec .)
+    CLOSEDATA       reduce using rule 12 (content_rec -> CONTENT content_rec .)
+    CLOSEROW        reduce using rule 12 (content_rec -> CONTENT content_rec .)
+
+
+state 23
+
+    (1) start -> BEGIN skipall OPENTBODY content_rec handle_row CLOSETBODY .
+
+    $end            reduce using rule 1 (start -> BEGIN skipall OPENTBODY content_rec handle_row CLOSETBODY .)
+
+
+state 24
+
+    (2) handle_row -> OPENROW content_rec . OPENDATA content_rec CLOSEDATA content_rec recurse_td CLOSEROW content_rec handle_row
+
+    OPENDATA        shift and go to state 25
+
+
+state 25
+
+    (2) handle_row -> OPENROW content_rec OPENDATA . content_rec CLOSEDATA content_rec recurse_td CLOSEROW content_rec handle_row
+    (12) content_rec -> . CONTENT content_rec
+    (13) content_rec -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 17
+    CLOSEDATA       reduce using rule 14 (empty -> .)
+
+    content_rec                    shift and go to state 26
+    empty                          shift and go to state 18
+
+state 26
+
+    (2) handle_row -> OPENROW content_rec OPENDATA content_rec . CLOSEDATA content_rec recurse_td CLOSEROW content_rec handle_row
+
+    CLOSEDATA       shift and go to state 27
+
+
+state 27
+
+    (2) handle_row -> OPENROW content_rec OPENDATA content_rec CLOSEDATA . content_rec recurse_td CLOSEROW content_rec handle_row
+    (12) content_rec -> . CONTENT content_rec
+    (13) content_rec -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 17
+    OPENDATA        reduce using rule 14 (empty -> .)
+    CLOSEROW        reduce using rule 14 (empty -> .)
+
+    content_rec                    shift and go to state 28
+    empty                          shift and go to state 18
+
+state 28
+
+    (2) handle_row -> OPENROW content_rec OPENDATA content_rec CLOSEDATA content_rec . recurse_td CLOSEROW content_rec handle_row
+    (4) recurse_td -> . OPENDATA content_rec CLOSEDATA content_rec recurse_td
+    (5) recurse_td -> . empty
+    (14) empty -> .
+
+    OPENDATA        shift and go to state 29
+    CLOSEROW        reduce using rule 14 (empty -> .)
+
+    recurse_td                     shift and go to state 30
+    empty                          shift and go to state 31
+
+state 29
+
+    (4) recurse_td -> OPENDATA . content_rec CLOSEDATA content_rec recurse_td
+    (12) content_rec -> . CONTENT content_rec
+    (13) content_rec -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 17
+    CLOSEDATA       reduce using rule 14 (empty -> .)
+
+    content_rec                    shift and go to state 32
+    empty                          shift and go to state 18
+
+state 30
+
+    (2) handle_row -> OPENROW content_rec OPENDATA content_rec CLOSEDATA content_rec recurse_td . CLOSEROW content_rec handle_row
+
+    CLOSEROW        shift and go to state 33
+
+
+state 31
+
+    (5) recurse_td -> empty .
+
+    CLOSEROW        reduce using rule 5 (recurse_td -> empty .)
+
+
+state 32
+
+    (4) recurse_td -> OPENDATA content_rec . CLOSEDATA content_rec recurse_td
+
+    CLOSEDATA       shift and go to state 34
+
+
+state 33
+
+    (2) handle_row -> OPENROW content_rec OPENDATA content_rec CLOSEDATA content_rec recurse_td CLOSEROW . content_rec handle_row
+    (12) content_rec -> . CONTENT content_rec
+    (13) content_rec -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 17
+    OPENROW         reduce using rule 14 (empty -> .)
+    CLOSETBODY      reduce using rule 14 (empty -> .)
+
+    content_rec                    shift and go to state 35
+    empty                          shift and go to state 18
+
+state 34
+
+    (4) recurse_td -> OPENDATA content_rec CLOSEDATA . content_rec recurse_td
+    (12) content_rec -> . CONTENT content_rec
+    (13) content_rec -> . empty
+    (14) empty -> .
+
+    CONTENT         shift and go to state 17
+    OPENDATA        reduce using rule 14 (empty -> .)
+    CLOSEROW        reduce using rule 14 (empty -> .)
+
+    content_rec                    shift and go to state 36
+    empty                          shift and go to state 18
+
+state 35
+
+    (2) handle_row -> OPENROW content_rec OPENDATA content_rec CLOSEDATA content_rec recurse_td CLOSEROW content_rec . handle_row
+    (2) handle_row -> . OPENROW content_rec OPENDATA content_rec CLOSEDATA content_rec recurse_td CLOSEROW content_rec handle_row
+    (3) handle_row -> . empty
+    (14) empty -> .
+
+    OPENROW         shift and go to state 20
+    CLOSETBODY      reduce using rule 14 (empty -> .)
+
+    handle_row                     shift and go to state 37
+    empty                          shift and go to state 21
+
+state 36
+
+    (4) recurse_td -> OPENDATA content_rec CLOSEDATA content_rec . recurse_td
+    (4) recurse_td -> . OPENDATA content_rec CLOSEDATA content_rec recurse_td
+    (5) recurse_td -> . empty
+    (14) empty -> .
+
+    OPENDATA        shift and go to state 29
+    CLOSEROW        reduce using rule 14 (empty -> .)
+
+    recurse_td                     shift and go to state 38
+    empty                          shift and go to state 31
+
+state 37
+
+    (2) handle_row -> OPENROW content_rec OPENDATA content_rec CLOSEDATA content_rec recurse_td CLOSEROW content_rec handle_row .
+
+    CLOSETBODY      reduce using rule 2 (handle_row -> OPENROW content_rec OPENDATA content_rec CLOSEDATA content_rec recurse_td CLOSEROW content_rec handle_row .)
+
+
+state 38
+
+    (4) recurse_td -> OPENDATA content_rec CLOSEDATA content_rec recurse_td .
+
+    CLOSEROW        reduce using rule 4 (recurse_td -> OPENDATA content_rec CLOSEDATA content_rec recurse_td .)
+

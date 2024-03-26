@@ -1,0 +1,309 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CLOSE_H3
+    CLOSE_LI
+    CLOSE_P
+    CLOSE_UL
+    OPEN_H3
+    OPEN_LI
+    OPEN_P
+    OPEN_UL
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> table
+Rule 2     skiptag -> CONTENT skiptag
+Rule 3     skiptag -> empty
+Rule 4     table -> BEGIN skiptag CLOSE_H2 content data
+Rule 5     data -> skiptag OPEN_H2 CONTENT content CLOSE_H2 content data
+Rule 6     data -> END
+Rule 7     data -> skiptag
+Rule 8     content -> CONTENT content
+Rule 9     content -> empty
+Rule 10    empty -> <empty>
+
+Terminals, with rules where they appear
+
+BEGIN                : 4
+CLOSE_H2             : 4 5
+CLOSE_H3             : 
+CLOSE_LI             : 
+CLOSE_P              : 
+CLOSE_UL             : 
+CONTENT              : 2 5 8
+END                  : 6
+OPEN_H2              : 5
+OPEN_H3              : 
+OPEN_LI              : 
+OPEN_P               : 
+OPEN_UL              : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+content              : 4 5 5 8
+data                 : 4 5
+empty                : 3 9
+skiptag              : 2 4 5 7
+start                : 0
+table                : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . table
+    (4) table -> . BEGIN skiptag CLOSE_H2 content data
+
+    BEGIN           shift and go to state 3
+
+    start                          shift and go to state 1
+    table                          shift and go to state 2
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> table .
+
+    $end            reduce using rule 1 (start -> table .)
+
+
+state 3
+
+    (4) table -> BEGIN . skiptag CLOSE_H2 content data
+    (2) skiptag -> . CONTENT skiptag
+    (3) skiptag -> . empty
+    (10) empty -> .
+
+    CONTENT         shift and go to state 5
+    CLOSE_H2        reduce using rule 10 (empty -> .)
+
+    skiptag                        shift and go to state 4
+    empty                          shift and go to state 6
+
+state 4
+
+    (4) table -> BEGIN skiptag . CLOSE_H2 content data
+
+    CLOSE_H2        shift and go to state 7
+
+
+state 5
+
+    (2) skiptag -> CONTENT . skiptag
+    (2) skiptag -> . CONTENT skiptag
+    (3) skiptag -> . empty
+    (10) empty -> .
+
+    CONTENT         shift and go to state 5
+    CLOSE_H2        reduce using rule 10 (empty -> .)
+    OPEN_H2         reduce using rule 10 (empty -> .)
+    $end            reduce using rule 10 (empty -> .)
+
+    skiptag                        shift and go to state 8
+    empty                          shift and go to state 6
+
+state 6
+
+    (3) skiptag -> empty .
+
+    CLOSE_H2        reduce using rule 3 (skiptag -> empty .)
+    OPEN_H2         reduce using rule 3 (skiptag -> empty .)
+    $end            reduce using rule 3 (skiptag -> empty .)
+
+
+state 7
+
+    (4) table -> BEGIN skiptag CLOSE_H2 . content data
+    (8) content -> . CONTENT content
+    (9) content -> . empty
+    (10) empty -> .
+
+  ! shift/reduce conflict for CONTENT resolved as shift
+    CONTENT         shift and go to state 10
+    END             reduce using rule 10 (empty -> .)
+    OPEN_H2         reduce using rule 10 (empty -> .)
+    $end            reduce using rule 10 (empty -> .)
+
+  ! CONTENT         [ reduce using rule 10 (empty -> .) ]
+
+    content                        shift and go to state 9
+    empty                          shift and go to state 11
+
+state 8
+
+    (2) skiptag -> CONTENT skiptag .
+
+    CLOSE_H2        reduce using rule 2 (skiptag -> CONTENT skiptag .)
+    OPEN_H2         reduce using rule 2 (skiptag -> CONTENT skiptag .)
+    $end            reduce using rule 2 (skiptag -> CONTENT skiptag .)
+
+
+state 9
+
+    (4) table -> BEGIN skiptag CLOSE_H2 content . data
+    (5) data -> . skiptag OPEN_H2 CONTENT content CLOSE_H2 content data
+    (6) data -> . END
+    (7) data -> . skiptag
+    (2) skiptag -> . CONTENT skiptag
+    (3) skiptag -> . empty
+    (10) empty -> .
+
+    END             shift and go to state 14
+    CONTENT         shift and go to state 5
+    OPEN_H2         reduce using rule 10 (empty -> .)
+    $end            reduce using rule 10 (empty -> .)
+
+    skiptag                        shift and go to state 12
+    data                           shift and go to state 13
+    empty                          shift and go to state 6
+
+state 10
+
+    (8) content -> CONTENT . content
+    (8) content -> . CONTENT content
+    (9) content -> . empty
+    (10) empty -> .
+
+  ! shift/reduce conflict for CONTENT resolved as shift
+    CONTENT         shift and go to state 10
+    END             reduce using rule 10 (empty -> .)
+    OPEN_H2         reduce using rule 10 (empty -> .)
+    $end            reduce using rule 10 (empty -> .)
+    CLOSE_H2        reduce using rule 10 (empty -> .)
+
+  ! CONTENT         [ reduce using rule 10 (empty -> .) ]
+
+    content                        shift and go to state 15
+    empty                          shift and go to state 11
+
+state 11
+
+    (9) content -> empty .
+
+    END             reduce using rule 9 (content -> empty .)
+    CONTENT         reduce using rule 9 (content -> empty .)
+    OPEN_H2         reduce using rule 9 (content -> empty .)
+    $end            reduce using rule 9 (content -> empty .)
+    CLOSE_H2        reduce using rule 9 (content -> empty .)
+
+
+state 12
+
+    (5) data -> skiptag . OPEN_H2 CONTENT content CLOSE_H2 content data
+    (7) data -> skiptag .
+
+    OPEN_H2         shift and go to state 16
+    $end            reduce using rule 7 (data -> skiptag .)
+
+
+state 13
+
+    (4) table -> BEGIN skiptag CLOSE_H2 content data .
+
+    $end            reduce using rule 4 (table -> BEGIN skiptag CLOSE_H2 content data .)
+
+
+state 14
+
+    (6) data -> END .
+
+    $end            reduce using rule 6 (data -> END .)
+
+
+state 15
+
+    (8) content -> CONTENT content .
+
+    END             reduce using rule 8 (content -> CONTENT content .)
+    CONTENT         reduce using rule 8 (content -> CONTENT content .)
+    OPEN_H2         reduce using rule 8 (content -> CONTENT content .)
+    $end            reduce using rule 8 (content -> CONTENT content .)
+    CLOSE_H2        reduce using rule 8 (content -> CONTENT content .)
+
+
+state 16
+
+    (5) data -> skiptag OPEN_H2 . CONTENT content CLOSE_H2 content data
+
+    CONTENT         shift and go to state 17
+
+
+state 17
+
+    (5) data -> skiptag OPEN_H2 CONTENT . content CLOSE_H2 content data
+    (8) content -> . CONTENT content
+    (9) content -> . empty
+    (10) empty -> .
+
+    CONTENT         shift and go to state 10
+    CLOSE_H2        reduce using rule 10 (empty -> .)
+
+    content                        shift and go to state 18
+    empty                          shift and go to state 11
+
+state 18
+
+    (5) data -> skiptag OPEN_H2 CONTENT content . CLOSE_H2 content data
+
+    CLOSE_H2        shift and go to state 19
+
+
+state 19
+
+    (5) data -> skiptag OPEN_H2 CONTENT content CLOSE_H2 . content data
+    (8) content -> . CONTENT content
+    (9) content -> . empty
+    (10) empty -> .
+
+  ! shift/reduce conflict for CONTENT resolved as shift
+    CONTENT         shift and go to state 10
+    END             reduce using rule 10 (empty -> .)
+    OPEN_H2         reduce using rule 10 (empty -> .)
+    $end            reduce using rule 10 (empty -> .)
+
+  ! CONTENT         [ reduce using rule 10 (empty -> .) ]
+
+    content                        shift and go to state 20
+    empty                          shift and go to state 11
+
+state 20
+
+    (5) data -> skiptag OPEN_H2 CONTENT content CLOSE_H2 content . data
+    (5) data -> . skiptag OPEN_H2 CONTENT content CLOSE_H2 content data
+    (6) data -> . END
+    (7) data -> . skiptag
+    (2) skiptag -> . CONTENT skiptag
+    (3) skiptag -> . empty
+    (10) empty -> .
+
+    END             shift and go to state 14
+    CONTENT         shift and go to state 5
+    OPEN_H2         reduce using rule 10 (empty -> .)
+    $end            reduce using rule 10 (empty -> .)
+
+    skiptag                        shift and go to state 12
+    data                           shift and go to state 21
+    empty                          shift and go to state 6
+
+state 21
+
+    (5) data -> skiptag OPEN_H2 CONTENT content CLOSE_H2 content data .
+
+    $end            reduce using rule 5 (data -> skiptag OPEN_H2 CONTENT content CLOSE_H2 content data .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for CONTENT in state 7 resolved as shift
+WARNING: shift/reduce conflict for CONTENT in state 10 resolved as shift
+WARNING: shift/reduce conflict for CONTENT in state 19 resolved as shift
